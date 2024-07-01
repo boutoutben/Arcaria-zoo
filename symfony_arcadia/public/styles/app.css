@@ -1,0 +1,55 @@
+/*navbar*/
+body{
+    margin: 0;
+}
+
+.navbar{
+    background-color: #292929;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 1280x;
+    height: 60px;
+}
+
+.logo{
+    margin-left:21px;
+}
+
+.zoo_name{
+    position: absolute;
+    margin-left:175px;
+    font-size: 30px;
+    align-self: center;
+}
+
+.link{
+    position: absolute;
+    display: flex;
+    margin-left: 418px;
+}
+
+.link-navbar{
+    border: 1px solid black;
+    width: 297px;
+    height: 58px;
+    text-align: center;
+    align-content: center;
+}
+
+/*présentation du zoo*/
+
+.presentation{
+    background-color: #b79e9e;
+    opacity: 0.5;
+    margin: 100px 100px;
+}
+.description_img{
+    display: flex;
+    justify-content: space-between;
+}
+.img_presentation{
+    margin-right: 100px;
+}
+
+
