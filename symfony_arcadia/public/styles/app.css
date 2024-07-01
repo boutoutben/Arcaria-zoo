@@ -40,16 +40,54 @@ body{
 /*présentation du zoo*/
 
 .presentation{
-    background-color: #b79e9e;
-    opacity: 0.5;
-    margin: 100px 100px;
+    position: relative;
+    background-color: rgb(183,158,158,0.5);
+    margin: 100px 150px;
 }
 .description_img{
     display: flex;
     justify-content: space-between;
 }
+.description{
+    margin-left: 100px;
+}
 .img_presentation{
     margin-right: 100px;
 }
+
+/*element to do*/
+
+.ele-zoo{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 250px;
+    grid-gap: 60px;
+    margin: 0 150px;
+    text-align: center;
+    color: white;
+}
+.grid-items{
+    border: 3px solid black;
+}
+
+.habitats{
+    grid-column: 1;
+    grid-row: 1/ span 2;
+    background-color: rgb(70,67,70,0.65);
+}
+
+.animaux{
+    grid-column: 2;
+    grid-row: 1 /span 2;
+    background-color: rgb(68,59,59,0.74);
+}
+
+.services{
+    grid-column: 1/span 2;
+    grid-row: 3/ span 4;
+    background-color: rgb(59,63,48,0.76);
+}
+
+
 
 

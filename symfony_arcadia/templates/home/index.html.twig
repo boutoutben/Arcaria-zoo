@@ -1,14 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}accuil{% endblock %}
-
+{% block style %} url('img/homeBackground.jpg'){% endblock style %}
 {% block content %}
-    <div class="presentation">
-        <h2 class="text-center">présentation du zoo</h2>
-        <div class="description_img">
-            <p class="description">description<p>
-            <img src="img/imgPrésentation.jpg" width="350px" height="300" class="img_presentation"> 
+    <section>
+        <div class="presentation" >
+            <h2 class="text-center">présentation du zoo</h2>
+            <div class="description_img">
+                <p class="description">description<p>
+                <img src="img/imgPrésentation.jpg" width="450px" height="400" class="img_presentation"> 
+            </div>
         </div>
-    </div>
+
+        <div class="ele-zoo">
+            <div class="grid-items habitats">
+                <h3 class="living_title">Habitats</h3>
+            </div>
+            <div class="grid-items animaux">
+                <h3 class="animal_title">Animaux</h3>
+            </div>
+            <div class="grid-items services">
+                <h3 class="service_title">Services</h3>
+            </div>
+        </div> 
+
+        <div class="aivs">
+            
+        </div>
+
+    </section>
 
 {% endblock content %}
