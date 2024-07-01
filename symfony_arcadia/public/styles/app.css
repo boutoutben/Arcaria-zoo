@@ -88,6 +88,21 @@ body{
     background-color: rgb(59,63,48,0.76);
 }
 
+/*avis*/
+
+.avisZoo{
+    background-color: rgb(167, 157, 157,0.75);
+    margin: 50px 150px;
+    text-align: center;
+    color: white;
+}
+
+.avis{
+    background-color: rgb(167, 167, 167);
+    display: flex;
+    margin: 50px 100px;
+    
+}
 
 
 
