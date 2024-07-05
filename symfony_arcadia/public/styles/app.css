@@ -1,9 +1,10 @@
 /*navbar*/
 body{
-    margin: 0;
+    margin: -25px;
 }
 
 .navbar{
+    margin-top: 20px;
     background-color: #292929;
     color: white;
     display: flex;
@@ -164,5 +165,70 @@ body{
 
 .img-animal{
     border-radius: 50%;
+}
+
+/*connection pages*/
+
+.connectionTitle{
+    background-image: url("../img/connectionTitleBackground.jpg");
+    margin-top:-100px;
+    margin-bottom: 75px;
+    padding:75px 0;
+    text-align: center;
+}
+
+.formType{
+    background-color: rgb(73, 133, 43);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 952px;
+    height: auto;
+    font-size: 30px;
+    margin-left: 450px;
+    padding: 25px;
+    color: black;
+}
+
+.form-champ{
+    width: 300px;
+    height: 50px;
+    color: black;
+    margin:25px 0;
+}
+
+.connectionSubTitle{
+    margin: 10px 0px 50px 0; 
+}
+
+.btn-form{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+    background-color: rgb(138,226,107);
+}
+
+/*contact page */
+
+.titleContact{
+    background-image: url("../img/contactTitleBackground.jpg");
+    margin-top:-100px;
+    margin-bottom: 75px;
+    padding:75px 0;
+    text-align: center;
+    background-position: 50%;
+}
+
+.form-textarea{
+    width: 300px;
+    height: 100px;
+}
+
+/*footer*/
+
+.footer{
+    background-color: #292929;
+    margin-top: 50px;
 }
 

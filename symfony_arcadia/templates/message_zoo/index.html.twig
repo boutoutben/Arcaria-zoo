@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}contact{% endblock %}
+
+{% block content %}
+    <section>
+        <div class='titleContact'>
+            <h1>Contact</h1>
+        </div>
+        <div class='text-center'>
+            <h1>Entré en contact avec le zoo</h1>
+            <br>
+        </div>
+        <div class="formType">
+            <br>
+            <h2>Envoyer votre message</h2>
+            <br>
+            {{form_start(form)}}
+                <table>
+                    <tr>
+                        <th>{{form_label(form.emailUser)}}</th>
+                        <td>{{form_widget(form.emailUser)}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{form_label(form.titleMessage)}}</th>
+                        <td>{{form_widget(form.titleMessage)}}</td>
+                    </tr>
+                    <tr>
+                        <th>{{form_label(form.message)}}</th>
+                        <td>{{form_widget(form.message)}}</td>
+                    </tr>
+                </table>
+            {{form_end(form)}}
+            <button type='submit' class="btn-form">Envoyer</button>
+        </div>
+        
+    </section>
+    
+{% endblock content %}

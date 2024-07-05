@@ -20,10 +20,14 @@ class Animal
     #[ORM\Column(length: 255)]
     private ?string $etat = null;
 
+   
     #[ORM\OneToOne(targetEntity:'AllHabitats')]
     #[ORM\JoinColumn(name:'id_habitat',referencedColumnName:'id')]
-    private ?int $Habitats = null;
+    private $Habitats = null;
 
+    #[ORM\OneToOne(targetEntity:'Races')]
+    #[ORM\JoinColumn(name:'id_race',referencedColumnName:'id')]
+    private $race = null;
 
 
     public function getId(): ?int
@@ -55,9 +59,14 @@ class Animal
         return $this;
     }
 
-    public function getHabitats(): ?int 
+    public function getHabitats(): ?AllHabitats
     {
         return $this->Habitats;
+    }
+
+    public function getRaces():?Races
+    {
+        return $this->race;
     }
 
 }

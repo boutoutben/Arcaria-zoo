@@ -15,7 +15,7 @@ class AnimalController extends AbstractController
    public function index(ManagerRegistry $mr, int $id_habitat): Response
    {
       $habitat = $mr->getRepository(AllHabitats::class)->findBy(["id"=>$id_habitat]);
-      $allAnimauxHabitat = $mr->getRepository(Animal::class)->findBy(["idHabitats" => $id_habitat]);
+      $allAnimauxHabitat = $mr->getRepository(Animal::class)->findBy(["Habitats" => $id_habitat]);
       return $this->render('animalsHabitat/index.html.twig', [
          "habitat" => $habitat,
          "animalHabitat" => $allAnimauxHabitat,

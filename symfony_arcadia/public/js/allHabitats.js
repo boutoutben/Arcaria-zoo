@@ -1,0 +1,1 @@
+$habitat = document.getElementByClassName("habitat");

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connection{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="connectionTitle">
+            <h1>Connection</h1>
+        </div>
+        <div class="formType">
+            <hr>
+            <h2>Connection employé et vétérinaire</h2>
+            <hr>
+            <table>
+            {{form_start(form)}}
+                <tr>
+                    <th>{{ form_label(form.username) }}</th>
+                    <td>{{ form_widget(form.username) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form_label(form.password) }}</th>
+                    <th>{{ form_widget(form.password) }}</th>
+                </tr> 
+            {{form_end(form)}}
+            </table>
+            <button type="submit" class='btn-form'>Connection</button>
+        </div>
+    </section>
+{% endblock  content %}
