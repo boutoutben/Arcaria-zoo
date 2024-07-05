@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}habits{% endblock %}
+
+{% block style %}url("img/allHabitatsBackground.jpg"){% endblock style %}
+
+{% block content %}
+<section class="habitatsPage">
+    <div class="allHabitats">
+        {% for habitat in allHabitats %}
+            <div class="habitat">
+                <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}.jpg" width="400px" height="250px"> 
+                <h3 class="text-center">{{habitat.name}}</h3>
+                <p class="text-center">{{habitat.description}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}

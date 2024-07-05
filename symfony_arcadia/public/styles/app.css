@@ -10,6 +10,11 @@ body{
     flex-direction: row;
     width: 1280x;
     height: 60px;
+    margin-bottom: 100px;
+}
+.navbar a{
+    text-decoration: none;
+    color:white;
 }
 
 .logo{
@@ -40,6 +45,7 @@ body{
 /*présentation du zoo*/
 
 .presentation{
+    color: white;
     position: relative;
     background-color: rgb(183,158,158,0.5);
     margin: 100px 150px;
@@ -47,6 +53,7 @@ body{
 .description_img{
     display: flex;
     justify-content: space-between;
+    margin: 0 50px;
 }
 .description{
     margin-left: 100px;
@@ -101,8 +108,61 @@ body{
     background-color: rgb(167, 167, 167);
     display: flex;
     margin: 50px 100px;
-    
+}
+
+/*services page*/ 
+.servcicesPageTitle{
+    color: white;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.allEle{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 500px;
+    grid-gap: 100px;
+    color: white;
+    margin: 0 150px;
+}
+
+.grid-ele{
+    background-color: rgb(59, 63, 48, 0.75);
 }
 
 
+/*habitats page*/
+.allHabitats{
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    grid-gap: 100px;
+    margin: 50px 250px;
+
+}
+
+.habitat{
+    background-color: rgb(163,150,150,0.73);
+    padding: 25px 0;
+}
+
+.habitatImg{
+    border-radius: 50%;
+}
+
+/* animaux par habitats*/
+.allAnimaux{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    grid-gap: 100px 50px;
+    color: white;
+    margin:0 150px;
+}
+
+
+.img-animal{
+    border-radius: 50%;
+}
 

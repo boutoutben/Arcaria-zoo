@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{habitat[0].name}}{% endblock %}
+
+{% block style %}url("../img/{{habitat[0].img}}Background.jpg"){% endblock style %}
+
+{% block content %}
+    <section>
+        <div class='allAnimaux'>
+            {% for animal in animalHabitat %}
+                <div class="animal text-center">
+                    <img src="../img/{{animal.name}}.jpg" width="200px" height="200px" class="img-animal">
+                    <h3>{{animal.name}}</h3>
+                    <p>{{animal.etat}}</p>
+                </div>
+            {% endfor %} 
+        </div>
+    </section>
+    
+
+{% endblock content %}
