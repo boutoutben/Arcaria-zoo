@@ -162,9 +162,40 @@ body{
     margin:0 150px;
 }
 
+.icon-50{
+    font-size: 50px;
+    justify-self: end;
+    margin-left: 50px;
+}
+
+.presentation_animaux{
+    position: absolute;
+    z-index: 10;
+    background-color: rgb(138,226,107);
+    margin-left: 25px;
+    margin-bottom: 50px;
+    padding-right: 25px;
+}
+
+.margin-25{
+    margin-left: 25px;
+}
+
+
+.hidden {
+    display: none;
+}
+.visible {
+    display: grid;
+}
+
 
 .img-animal{
     border-radius: 50%;
+}
+
+.img-presentation-animal{
+    margin-left: 50px;
 }
 
 /*connection pages*/

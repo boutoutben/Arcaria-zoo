@@ -8,7 +8,7 @@
 <section class="habitatsPage">
     <div class="allHabitats">
         {% for habitat in allHabitats %}
-            <div class="habitat">
+            <div class="habitat" onClick = "window.location.replace(`habitats/{{habitat.id}}`);">
                 <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}.jpg" width="400px" height="250px"> 
                 <h3 class="text-center">{{habitat.name}}</h3>
                 <p class="text-center">{{habitat.description}}</p>
@@ -16,5 +16,6 @@
         {% endfor %}
     </div>
 </section>
+
 
 {% endblock content %}

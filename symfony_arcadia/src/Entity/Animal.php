@@ -27,7 +27,7 @@ class Animal
 
     #[ORM\OneToOne(targetEntity:'Races')]
     #[ORM\JoinColumn(name:'id_race',referencedColumnName:'id')]
-    private $race = null;
+    private ?Races $race = null;
 
 
     public function getId(): ?int
@@ -67,6 +67,13 @@ class Animal
     public function getRaces():?Races
     {
         return $this->race;
+    }
+
+    public function setRace(Races $race): self
+    {
+        $this->race = $race;
+
+        return $this;
     }
 
 }

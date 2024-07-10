@@ -8,6 +8,7 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ConnectionController extends AbstractController
@@ -17,9 +18,12 @@ class ConnectionController extends AbstractController
     {
        
         $connection = new User();
-        $form = $this->createForm(ConnectionType::class);
+        $form = $this->createForm(ConnectionType::class, $connection,[
+            'action' => $this->generateUrl('app_connection'),
+            'method' => 'POST',
+        ]);
         $form-> handlerequest($request);
-        if ($form->isSubmitted() && $form->isValid) {
+        if ($form->isSubmitted() && $form->isValid()) {
                 $em->persist($connection);
                 $em->flush();
         }
@@ -28,4 +32,5 @@ class ConnectionController extends AbstractController
         ]);
         
     }
+
 }

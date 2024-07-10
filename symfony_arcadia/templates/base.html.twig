@@ -44,8 +44,20 @@
                     <div class="link-navbar"><a href="/"> accuil</a></div>
                     <div class="link-navbar"><a href="/services"> services</a></div>
                     <div class="link-navbar"><a href="/habitats">habitats</a></div>
-                    <div class="link-navbar"><a href="/connection"> connection</a></div>
-                    <div class="link-navbar"><a href='/message_zoo'> contact</a></div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="link-navbar"><a href="/logout">déconnection</a></div>
+                    {% else %}
+                        <div class="link-navbar"><a href="/login">connection</a></div>
+                    {% endif %}
+...                 {% if not(is_granted("ROLE_ADMIN")) %} 
+                        <div class="link-navbar"><a href='/message_zoo'> contact</a></div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMINISTRATION") %}
+                        <div class="link-navbar"><a href='#'> espace administration</a></div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") and not(is_granted("ROLE_ADMINISTRATION")) %}
+                         <div class="link-navbar"><a href='#'> espace présonnelle</a></div>
+                    {% endif %}
                 </div>
             </div>
         {% endblock body %}

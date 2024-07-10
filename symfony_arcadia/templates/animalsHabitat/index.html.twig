@@ -8,14 +8,24 @@
     <section>
         <div class='allAnimaux'>
             {% for animal in animalHabitat %}
-                <div class="animal text-center">
-                    <img src="../img/{{animal.name}}.jpg" width="200px" height="200px" class="img-animal">
-                    <h3>{{animal.name}}</h3>
-                    <p>{{animal.etat}}</p>
+               <div>
+                    <div class=" presentation_animaux hidden ">
+                        <button type="button" class="close icon-50" aria-label="Close" ><span aria-hidden="true" onClick="hiddenPresentation({{animal.id}})">&times;</span></button>
+                        <img src="../img/{{animal.name}}.jpg" width="400px" height="300px" class="img-presentation-animal">
+                        <h3 class="margin-25">Prénom: {{animal.name}}</h3>
+                        <h3 class="margin-25">Races: {{races[animal.races.id -1].label}}</h3>
+                        <h3 class="margin-25">Etat de l'animal: {{animal.etat}}</h3>
+                       
+                    </div>
+                    <div class="animal text-center" onClick="presentation({{animal.id}})">
+                        <img src="../img/{{animal.name}}.jpg" width="200px" height="200px" class="img-animal">
+                        <h3>{{animal.name}}</h3>
+                        <p>{{animal.etat}}</p>
+                    </div>
                 </div>
             {% endfor %} 
         </div>
     </section>
-    
+    <script src="../js/animalsHabitat.js"></script>
 
 {% endblock content %}
