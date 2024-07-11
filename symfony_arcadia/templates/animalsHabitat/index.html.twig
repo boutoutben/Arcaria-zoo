@@ -6,6 +6,11 @@
 
 {% block content %}
     <section>
+        {%if is_granted("ROLE_ADMISNITRATION") %}
+            <div class="modifier">
+                <button id="btn-modif">Modifier</button>
+            </div>
+        {% endif %}
         <div class='allAnimaux'>
             {% for animal in animalHabitat %}
                <div>

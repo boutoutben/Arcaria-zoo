@@ -7,6 +7,11 @@
 {% block content %}
 
     <section class= "servicesPages">
+        {%if is_granted("ROLE_EMPLOYER") or is_granted("ROLE_ADMINISTRATION")%}
+            <div class="modifier">
+                <button id="btn-modif">Modifier</button>
+            </div>
+        {% endif %}
         <h1 class=" text-center servcicesPageTitle">Nos services présent dans le zoo</h1>
         <div class='allEle'>
             {% for service in allServices %}

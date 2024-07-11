@@ -6,6 +6,11 @@
 
 {% block content %}
 <section class="habitatsPage">
+        {%if is_granted("ROLE_ADMINISTRATION") %}
+            <div class="modifier">
+                <button id="btn-modif"><a href='/modifAllHabitats'>Modifier</a></button>
+            </div>
+        {% endif %}
     <div class="allHabitats">
         {% for habitat in allHabitats %}
             <div class="habitat" onClick = "window.location.replace(`habitats/{{habitat.id}}`);">

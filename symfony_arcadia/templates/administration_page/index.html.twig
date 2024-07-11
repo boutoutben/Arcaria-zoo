@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace administration{% endblock %}
+
+{% block content %}
+    <section>
+        <div class='title_administration'>
+            <h1 class='titleAdministrationText'>Espace administration</h1>
+        </div>
+        <div class="formType">
+            {{form_start(form)}}
+                    <div class="radioEmploie">
+                        <div class="employer">
+                            {{form_label(form.employer)}}{{form_widget(form.employer,{'full_name': "choix"})}}
+                        </div>
+                        <div class="veterinaire"> 
+                            {{form_label(form.veterinaire)}}{{form_widget(form.veterinaire,{'full_name': "choix"})}}
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>{{form_label(form.username)}}</td>
+                            <td>{{form_widget(form.username,{'full_name': "username"})}} </td>
+                        </tr>
+                        <tr>
+                            <td>{{form_label(form.password)}}</td>
+                            <td>{{form_widget(form.password,{'full_name': "password"})}} </td>
+                        </tr>
+                    <table>
+                    <button type="submit" class='btn-form'>Inscription</button>
+            
+            {{form_end(form)}}  
+        </div>
+        <div>
+    </section>
+{% endblock content %}

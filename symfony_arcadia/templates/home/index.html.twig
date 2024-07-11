@@ -4,8 +4,12 @@
 {% block style %} url('img/homeBackground.jpg'){% endblock style %}
 {% block content %}
     <section>
-        <div>
-        <div class="presentation" >
+        {%if is_granted("ROLE_ADMINISTRATION") %}
+            <div class="modifier">
+                <button id="btn-modif">Modifier</button>
+            </div>
+        {% endif %}
+        <div class="presentation">
             <h2 class="text-center">présentation du zoo</h2>
             <div class="description_img">
                 <p class="description">description<p>

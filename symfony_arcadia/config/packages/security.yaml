@@ -18,7 +18,7 @@ security:
             provider: app_user_provider
             logout:
                 path: /logout
-                
+               
             custom_authenticator: App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
@@ -30,11 +30,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - {path: ^/login, roles: PUBLIC_ACCESS}
-        - {path: ^/api/registration, roles: PUBLIC_ACCESS }
-        - { path: ^/api/registration, roles: ROLE_ADMIN }
-        - { path: ^/, roles: PUBLIC_ACCESS }
-        - { path: ^/message_zoo, roles: ROLE_ADMIN}
+        - { path: ^/message_zoo, roles: [ROLE_EMPLOYER, ROLES_VETERINAIRE]}
+        - {path: ^/administration, roles: ROLE_ADMINISTRATION}
 
 when@test:
     security:
