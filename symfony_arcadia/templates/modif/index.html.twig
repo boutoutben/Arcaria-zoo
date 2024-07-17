@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+    <section>
+        <form method="post" action="{{actionName}}" class='form-choice'>
+            <select id="choice" name="choice" class="choice">
+                <option> Choix de l'action </option>
+                <option value="create" data="create"><a href="#create"0>créer</a></option>
+                <option value="update" data="update">mettre à jour</option>
+                <option value="delete" data="delete">supprimer</option>
+            </select>
+            <button type="submit" class="btn-choice">générer</button>
+        </form>
+        {% if choice == "create" %}
+            <div class="formType" id="create">
+                <h1> Créer un {{namePlace}}</h1>
+                {{ form_start(form) }}
+                    <table>
+                        <tr>
+                            <td>{{ form_label(form.name) }}</td>
+                            <td>{{ form_widget(form.name, {'full_name': 'name' }) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_label(form.description) }}</td>
+                            <td>{{ form_widget(form.description, { 'full_name': 'description' }) }}</td>
+                        </tr>
+                    </table>
+                    {{ form_row(form.image, { 'full_name': 'image' }) }}
+                    <button type="submit" class="btn-form">Créer</button>
+                {{ form_end(form) }}
+            </div>
+        {% elseif choice == "update" %}
+             <div class="formType" id="update">
+                <h1> Mettre à jour les {{namePlace}}s</h1>
+                {{ form_start(formUpdate) }}
+                    <table>
+                        <tr>
+                            <td>{{form_label(formUpdate.nameToChange)}}</td>
+                            <td>{{form_widget(formUpdate.nameToChange, {"full_name":"nameToChange"})}}</td>
+                        <tr>
+                            <td>{{ form_label(formUpdate.name) }}</td>
+                            <td>{{ form_widget(formUpdate.name, {'full_name': 'name' }) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_label(formUpdate.description) }}</td>
+                            <td>{{ form_widget(formUpdate.description, { 'full_name': 'description' }) }}</td>
+                        </tr>
+                    </table>
+                    {{ form_row(formUpdate.image, { 'full_name': 'image' }) }}
+                    <button type="submit" class="btn-form">Mettre à jour</button>
+                {{ form_end(formUpdate) }}
+            </div>
+        {% elseif choice == "delete" %}
+            <div class="formType" id="update">
+                <h1>Suprimmé un {{namePlace}}</h1>
+                {{ form_start(formDelete) }}
+                    <table>
+                        <tr>
+                            <td>{{form_label(formDelete.nameToDelete)}}</td>
+                            <td>{{form_widget(formDelete.nameToDelete, {"full_name":"nameToDelete"})}}</td>
+                    </table>
+                    <button type="submit" class="btn-form">supprimer</button>
+                {{ form_end(formDelete) }}
+            </div>
+        {% else %}
+            <h1 class="text-center margin-100">Merci de selectionné une action</h1>
+        {% endif %}
+    </section>
+{% endblock %}

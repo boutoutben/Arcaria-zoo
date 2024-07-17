@@ -1,15 +1,15 @@
 
-function presentation(id)
+function presentation(id, nbAnimal)
 {
         let presentation = document.getElementsByClassName("presentation_animaux");
-        presentation[(id-1)%6].classList.remove("hidden")
-        presentation[(id-1)%6].classList.add('visible'); 
+        presentation[(id)%nbAnimal].classList.remove("hidden")
+        presentation[(id)%nbAnimal].classList.add('visible'); 
 }
 
-function hiddenPresentation(id)
+function hiddenPresentation(id, nbAnimal)
 {
         let presentation = document.getElementsByClassName("presentation_animaux");
-        presentation[(id-1)%6].classList.remove("visible");
-        presentation[(id-1)%6].classList.add("hidden");
+        presentation[(id)%nbAnimal].classList.remove("visible");
+        presentation[(id)%nbAnimal].classList.add("hidden");
 }
 

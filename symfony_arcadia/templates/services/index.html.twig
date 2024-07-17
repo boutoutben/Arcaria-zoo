@@ -8,23 +8,23 @@
 
     <section class= "servicesPages">
         {%if is_granted("ROLE_EMPLOYER") or is_granted("ROLE_ADMINISTRATION")%}
-            <div class="modifier">
+            <div class="modifier" onClick="btnModif('/modifServices/index')">
                 <button id="btn-modif">Modifier</button>
             </div>
         {% endif %}
-        <h1 class=" text-center servcicesPageTitle">Nos services présent dans le zoo</h1>
+        <h1 class="text-center servcicesPageTitle">Nos services présent dans le zoo</h1>
         <div class='allEle'>
             {% for service in allServices %}
                 <div class="grid-ele service1">
                     <h3>{{service.name}}</h3>
                     <div class="description_img">
                         <p>{{service.description}}</p>
-                        <img class="serviceImg" src="img/{{service.img}}.jpg" width="275px" height="250px">
+                        <img class="serviceImg" src="img/{{service.img}}" width="275px" height="250px">
                     </div>
                 </div>
             {% endfor %}
         </div>
-        
+        <script src='../js/btnModif.js'</script>
     </section>
 
-{% endblock %}
+{% endblock content %}

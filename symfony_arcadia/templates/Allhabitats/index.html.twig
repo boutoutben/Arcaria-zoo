@@ -7,20 +7,20 @@
 {% block content %}
 <section class="habitatsPage">
         {%if is_granted("ROLE_ADMINISTRATION") %}
-            <div class="modifier">
-                <button id="btn-modif"><a href='/modifAllHabitats'>Modifier</a></button>
+            <div class="modifier" onClick="btnModif('/modifAllHabitats/index')">
+                <button id="btn-modif">Modifier</button>
             </div>
         {% endif %}
     <div class="allHabitats">
         {% for habitat in allHabitats %}
             <div class="habitat" onClick = "window.location.replace(`habitats/{{habitat.id}}`);">
-                <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}.jpg" width="400px" height="250px"> 
+                <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}" width="400px" height="250px"> 
                 <h3 class="text-center">{{habitat.name}}</h3>
                 <p class="text-center">{{habitat.description}}</p>
             </div>
         {% endfor %}
     </div>
 </section>
-
+<script src="../js/btnModif.js"></script>
 
 {% endblock content %}

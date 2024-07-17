@@ -2,35 +2,39 @@
 
 {% block title %}{{habitat[0].name}}{% endblock %}
 
-{% block style %}url("../img/{{habitat[0].img}}Background.jpg"){% endblock style %}
+{% block style %}url("../img/{{habitat[0].img}}"){% endblock style %}
 
 {% block content %}
     <section>
-        {%if is_granted("ROLE_ADMISNITRATION") %}
-            <div class="modifier">
+        {% if is_granted("ROLE_ADMINISTRATION") %}
+            <div class="modifier" onClick="btnModif('{{path('app_modif_animaux_index', {'id_habitat': habitat[0].id})}}')">
                 <button id="btn-modif">Modifier</button>
             </div>
         {% endif %}
         <div class='allAnimaux'>
-            {% for animal in animalHabitat %}
+            {% set nb = 0 %}
+            {% for animalData in animalData %}
+                
                <div>
                     <div class=" presentation_animaux hidden ">
-                        <button type="button" class="close icon-50" aria-label="Close" ><span aria-hidden="true" onClick="hiddenPresentation({{animal.id}})">&times;</span></button>
-                        <img src="../img/{{animal.name}}.jpg" width="400px" height="300px" class="img-presentation-animal">
-                        <h3 class="margin-25">Prénom: {{animal.name}}</h3>
-                        <h3 class="margin-25">Races: {{races[animal.races.id -1].label}}</h3>
-                        <h3 class="margin-25">Etat de l'animal: {{animal.etat}}</h3>
+                        <button type="button" class="close icon-50" aria-label="Close" ><span aria-hidden="true" onClick="hiddenPresentation({{nb}}, {{nbAnimal}})">&times;</span></button>
+                        <img src="../img/{{animalData.animal.img}}" width="400px" height="300px" class="img-presentation-animal">
+                        <h3 class="margin-25">Prénom: {{animalData.animal.name}}</h3>
+                        <h3 class="margin-25">Races: {{animalData.race[0].label}}</h3>
+                        <h3 class="margin-25">Etat de l'animal: {{animalData.animal.etat}}</h3>
                        
                     </div>
-                    <div class="animal text-center" onClick="presentation({{animal.id}})">
-                        <img src="../img/{{animal.name}}.jpg" width="200px" height="200px" class="img-animal">
-                        <h3>{{animal.name}}</h3>
-                        <p>{{animal.etat}}</p>
+                    <div class="animal text-center" onClick="presentation({{nb}},{{nbAnimal}})">
+                        <img src="../img/{{animalData.animal.img}}" width="200px" height="200px" class="img-animal">
+                        <h3>{{animalData.animal.name}}</h3>
+                        <p>{{animalData.animal.etat}}</p>
                     </div>
                 </div>
+                {% set nb = nb + 1 %}
             {% endfor %} 
         </div>
     </section>
     <script src="../js/animalsHabitat.js"></script>
+    <script src='../js/btnModif.js'</script>
 
 {% endblock content %}

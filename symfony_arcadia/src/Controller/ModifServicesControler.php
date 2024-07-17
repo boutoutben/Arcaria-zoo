@@ -2,31 +2,30 @@
 
 namespace App\Controller;
 
-use App\Entity\AllHabitats;
+use App\Entity\Services;
 use App\Form\ChoiceModifType;
-use App\Form\ModifAllHabitatsCreateType;
-use App\Form\ModifAllHabitatsDeleteType;
-use App\Form\ModifAllHabitatsUpdateType;
-use App\Repository\AllHabitatsRepository;
+use App\Form\ModifServicesCreateType;
+use App\Form\ModifServicesDeleteType;
+use App\Form\ModifServicesUpdateType;
+use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-#[Route('/modifAllHabitats', name: 'app_modif_all_habitats_')]
-class ModifAllHabitatsController extends AbstractController
+#[Route('/modifServices', name: 'app_modif_services_')]
+class ModifServicesControler extends AbstractController
 {
-   
-    private AllHabitatsRepository $AllHabitatsRepository;
+    private ServicesRepository $ServicesRepository;
     private RouterInterface $router;
 
-    public function __construct(AllHabitatsRepository $AllHabitatsRepository, RouterInterface $router)
+    public function __construct(ServicesRepository $ServicesRepository, RouterInterface $router)
     {
-        $this->AllHabitatsRepository = $AllHabitatsRepository;
+        $this->ServicesRepository = $ServicesRepository;
         $this->router = $router;
     }
 
@@ -34,25 +33,25 @@ class ModifAllHabitatsController extends AbstractController
     public function index(): Response
     {
         
-        $habitats = null;
+        $services = null;
         $choice = $_POST["choice"] ?? '';
 
-        $formChoice = $this->createForm(ChoiceModifType::class, $habitats,[
+        $formChoice = $this->createForm(ChoiceModifType::class, $services,[
             "method" => "post",
-            "action" => $this->generateUrl("app_modif_all_habitats_index")
+            "action" => $this->generateUrl("app_modif_services_index")
         ]);
 
-        $form = $this->createForm(ModifAllHabitatsCreateType::class,$habitats,[
-            "action" => $this->generateUrl('app_modif_all_habitats_create'),
+        $form = $this->createForm(ModifServicesCreateType::class,$services,[
+            "action" => $this->generateUrl('app_modif_services_create'),
             "method"=>"POST",
         ]);
-        $formUpdate = $this->createForm(ModifAllHabitatsUpdateType:: class, $habitats,[
-            "action" => $this->generateUrl('app_modif_all_habitats_update'),
+        $formUpdate = $this->createForm(ModifServicesUpdateType::class, $services,[
+            "action" => $this->generateUrl('app_modif_services_update'),
             "method"=>"POST",
         ]);
 
-        $formDelete = $this->createForm(ModifAllHabitatsDeleteType:: class, $habitats,[
-            "action" => $this->generateUrl('app_modif_all_habitats_delete'),
+        $formDelete = $this->createForm(ModifServicesDeleteType:: class, $services,[
+            "action" => $this->generateUrl('app_modif_services_delete'),
             "method"=>"POST",
         ]);
 
@@ -62,17 +61,17 @@ class ModifAllHabitatsController extends AbstractController
             "formUpdate" => $formUpdate,
             "formDelete" => $formDelete,
             "formChoice" => $formChoice,
-            "title" => "modier les habitats",
-            "actionName" => "/modifAllHabitats/index",
-            "namePlace" => "habitat"
+            "title" => "modifier les services",
+            "actionName" => "/modifServices/index",
+            "namePlace" => "service"
         ]);
     }
 
 
     #[Route('/create', name: 'create')]
-    public function create(HttpFoundationRequest $request, EntityManagerInterface $em):Response
+    public function create(Request $request, EntityManagerInterface $em):Response
     {
-        $habitats = new AllHabitats();
+        $services = new Services();
         $name = $request->request->get('name');
         $description = $request->request->get("description");
         $image = $request->files->get("image");
@@ -86,11 +85,11 @@ class ModifAllHabitatsController extends AbstractController
             }
 
         if(isset($name)&& isset($description)&&isset($image)){
-            $habitats->setName($name);
-            $habitats->setDescription($description);
-            $habitats->setImg($image->getClientOriginalName());
+            $services->setName($name);
+            $services->setDescription($description);
+            $services->setImg($image->getClientOriginalName());
 
-            $em->persist($habitats);
+            $em->persist($services);
             $em->flush();
 
             return new RedirectResponse(
@@ -100,9 +99,9 @@ class ModifAllHabitatsController extends AbstractController
     }
 
     #[Route('/update', name: 'update')]
-    public function update(HttpFoundationRequest $request, EntityManagerInterface $em):Response
+    public function update(Request $request, EntityManagerInterface $em):Response
     {
-        $habitats = new AllHabitats();
+        $services = new Services();
         $nameToChange = $request->request->get('nameToChange');
         $name = $request->request->get('name');
         $description = $request->request->get("description");
@@ -110,14 +109,14 @@ class ModifAllHabitatsController extends AbstractController
         $uploadDir = $this->getParameter('upload_directory');
 
         if(isset($nameToChange)){
-            $habitats = $this->AllHabitatsRepository->findOneBy(['name' => $nameToChange]);
+            $services = $this->ServicesRepository->findOneBy(['name' => $nameToChange]);
 
             if($name != ""){
-                $habitats->setName($name);
+                $services->setName($name);
 
             }
             if($description != ""){
-                $habitats->setDescription($description);
+                $services->setDescription($description);
             }
             if(isset($image)){
                 try {
@@ -126,7 +125,7 @@ class ModifAllHabitatsController extends AbstractController
                 } catch (FileException $e) {
                     // Handle exception if something happens during file upload
                 }
-                $habitats->setImg($image->getClientOriginalName());
+                $services->setImg($image->getClientOriginalName());
             }
                 
                 
@@ -140,11 +139,11 @@ class ModifAllHabitatsController extends AbstractController
     }
 
     #[Route("/delete", name:"delete")]
-    public function delete(HttpFoundationRequest $request, EntityManagerInterface $em)
+    public function delete(Request $request, EntityManagerInterface $em)
     {
         $nameToDelete = $request->request->get("nameToDelete");
-        $habitats = $this->AllHabitatsRepository->findBy(['name'=>$nameToDelete]);
-        foreach ($habitats as $habitat) {
+        $services = $this->ServicesRepository->findBy(['name'=>$nameToDelete]);
+        foreach ($services as $habitat) {
             $em->remove($habitat);
         }
         $em->flush();
@@ -153,6 +152,4 @@ class ModifAllHabitatsController extends AbstractController
             $this->router->generate('app_home')
         );
     }
-    
-
 }
