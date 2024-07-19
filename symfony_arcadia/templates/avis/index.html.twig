@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AvisController!{% endblock %}
+
+{% block content %}
+<section>
+    <div class="formType">
+        {{form_start(form) }}
+            <table>
+                <tr>
+                    <td>{{form_label(form.pseudo)}}</td>
+                    <td>{{form_widget(form.pseudo, {"full_name": "pseudo"})}}</td>
+                </tr>
+                <tr>
+                    <td>{{form_label(form.avis)}}</td>
+                    <td>{{form_widget(form.avis, {"full_name":"avis"})}}</td>
+                </tr>
+            </table>
+            <button type="submit" class="btn-form">Créer</button>
+        {{form_end(form)}}
+    </div>
+<section>
+{% endblock %}

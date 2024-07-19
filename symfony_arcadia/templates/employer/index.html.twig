@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace employer{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="espace-employee-title">
+            <h1 class="espace-employee-title-text">Espace</br> employée</h1>
+        </div>
+        <div class="valid-avis">
+            <h1 class='text-center'>Valider les avis</h1>
+            <br>
+            {% if avisToValid != null %}
+                {% for avis in avisToValid %}
+                    <div class='avisToValid'>
+                        <h4 class='avisSpace'>{{avis.pseudo }}: {{avis.text}}</h4>
+                        <div class="yesButton">     
+                            <button type="submit" class="btn btn-outline-success" name="options-outlined" id="success-outlined" onClick="window.location.href = '/avis/yes/{{avis.id}}'">Yes</button>
+                        </div>
+                        <div class="noButton">
+                           <button type="submit" class="btn btn-outline-danger" name="options-outlined" id="danger-outlined" onClick="window.location.href = '/avis/no/{{avis.id}}'">No </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h4 class="text-center">Il n'est à pas d'avis à valider</h4>
+            {% endif %}
+        </div>
+        <div class="animauxZoo">
+            <h1 class="text-center">Apporter de la nourriture au animaux</h1>
+            <form method="post" action ="/employee#animalNourriture">
+                <div class="animauxEating">
+                    {% for animal in animaux %}
+                        <div class='animalEat'>
+                            <input type="radio" class="btn-check" id="{{animal.id}}" name='animal' autocomplete="off" value="{{animal.id}}">
+                            <label class="btn btn-primary" for="{{animal.id}}">{{animal.name}}:<br>{{animal.Races.label}}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type='submit' class='btn-form btn-selection'>Selectionné</button>
+            </form>
+        </div>
+        {% if animalSelect != -1 %}
+            <div class="formType" id="animalNourriture">
+                <h2>Nourriture de {{animaux[animalSelect].name}}</h2>
+                {{form_start(nourritureForm)}}
+                    <table>
+                        <tr>
+                            <td>{{form_label(nourritureForm.date)}}</td>
+                            <td>{{form_widget(nourritureForm.date, {"full_name":"date"})}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{form_label(nourritureForm.nourriture)}}</td>
+                            <td>{{form_widget(nourritureForm.nourriture, {"full_name":"nourriture"})}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{form_label(nourritureForm.quantitee)}}</td>
+                            <td>{{form_widget(nourritureForm.quantitee, {"full_name":"quantitee"})}}</td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn-form">Nourrir</button>
+                {{form_end(nourritureForm)}} 
+            </div>
+        {% endif %}
+        
+    </section>
+{% endblock %}

@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Races;
+use DateTime;
 use PhpParser\Node\Expr\Cast\String_;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 class Animal
@@ -29,10 +31,19 @@ class Animal
 
     #[ORM\OneToOne(targetEntity:'Races')]
     #[ORM\JoinColumn(name:'id_race',referencedColumnName:'id')]
-    private ?Races $race = null;
+    private ?Races $Race = null;
 
     #[ORM\Column(length: 255)]
     private ?string $img = null;
+
+    #[ORM\Column]
+    private ?DateTime $date = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nourriture = null;
+
+    #[ORM\Column]
+    private ?int $quantitee = null;
 
 
     public function getId(): ?int
@@ -77,12 +88,12 @@ class Animal
 
     public function getRaces():?Races
     {
-        return $this->race;
+        return $this->Race;
     }
 
     public function setRace(Races $race): self
     {
-        $this->race = $race;
+        $this->Race = $race;
 
         return $this;
     }
@@ -97,6 +108,41 @@ class Animal
         $this->img = $img;
         return $this;
     }
+
+    public function getDate(): ?DateTime
+    {
+        return $this->date;
+    }
+
+    public function setDate(DateTime $date): static
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    public function getNourriture(): ?string
+    {
+        return $this->nourriture;
+    }
+
+    public function setNourriture(string $nourriture): static
+    {
+        $this->nourriture = $nourriture;
+        return $this;
+    }
+
+    public function getQuantitee(): ?String
+    {
+        return $this->quantitee;
+    }
+
+    public function setQuantitee(string $Quantitee): static
+    {
+        $this->quantitee = $Quantitee;
+        return $this;
+    }
+
+
 
 }
 

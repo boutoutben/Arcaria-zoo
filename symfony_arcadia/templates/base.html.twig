@@ -41,22 +41,22 @@
                 <img src="../../img/logo.png" width="56px" height="53" class="logo">
                 <h3 class='zoo_name'> arcadia zoo </h3>
                 <div class="link">
-                    <div class="link-navbar"><a href="/"> accuil</a></div>
-                    <div class="link-navbar"><a href="/services"> services</a></div>
-                    <div class="link-navbar"><a href="/habitats">habitats</a></div>
+                    <div class="link-navbar" onClick = "window.location.href = `/`;"> accuil</div>
+                    <div class="link-navbar" onClick = "window.location.href = '/services';">services</div>
+                    <div class="link-navbar" onClick = "window.location.href=`/habitats`;">habitats</div>
                     {% if is_granted('ROLE_VETERINAIRE') or is_granted("ROLE_EMPLOYER") %}
-                        <div class="link-navbar"><a href="/logout">déconnection</a></div>
+                        <div class="link-navbar" onClick = "window.location.href = '/logout';">déconnection</div>
                     {% else %}
-                        <div class="link-navbar"><a href="/login">connection</a></div>
+                        <div class="link-navbar" onClick = "window.location.href = '/login';">connection</div>
                     {% endif %}
-...                 {% if not(is_granted("ROLE_VETERINAIRE"))or not(is_granted("ROLE_EMPLOYER")) %} 
-                        <div class="link-navbar"><a href='/message_zoo'>contact</a></div>
+...                 {% if not(is_granted("ROLE_VETERINAIRE"))and not(is_granted("ROLE_EMPLOYER")) %} 
+                        <div class="link-navbar" onClick = "window.location.href = `/message_zoo`;">contact</div>
                     {% endif %}
                     {% if is_granted("ROLE_ADMINISTRATION") %}
-                        <div class="link-navbar"><a href='/administration'> espace administration</a></div>
+                        <div class="link-navbar" onClick="window.location.href = '/administration';">espace administration</div>
                     {% endif %}
-                    {% if (is_granted("ROLE_VETERINAIRE") or is_granted("ROLE_EMPLOYER" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
-                         <div class="link-navbar"><a href='#'> espace presonnelle</a></div>
+                    {% if (is_granted("ROLE_EMPLOYER" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
+                         <div class="link-navbar" onClick = "window.location.href = `/employee`;">espace presonnelle</div>
                     {% endif %}
                 </div>
             </div>

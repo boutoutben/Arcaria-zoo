@@ -28,13 +28,17 @@
                 <h3 class="service_title">Services</h3>
             </div>
         </div> 
-
         <div class="avisZoo">
-            <h3>Les avis du parc</h3>
-            <div class="avis">
-                <p class="pseudo">Pseudo</p>
-                <p class="avis-text">le zoo  est super bien, il offre de chouée momment</p>
+            <div class="button-title">
+                <h3 class='avisTitle'>Les avis du parc</h3>
+                <button class="btn-avis" onClick="window.location.href = '/avis/index';">Mettre un avis </button>
             </div>
+            {% for avis in avis %}
+            <div class="avis">
+                <p class="pseudo"><b>{{avis.pseudo}}:</b></p>
+                <p class="avis-text">{{avis.text}}</p>
+            </div>
+            {% endfor %}
         </div>
 
     </section>

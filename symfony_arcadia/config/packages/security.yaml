@@ -33,6 +33,7 @@ security:
     access_control:
         - { path: ^/message_zoo, roles: [ROLE_EMPLOYER, ROLES_VETERINAIRE]}
         - {path: ^/administration, roles: ROLE_ADMINISTRATION}
+        - {path: ^/message_zoo, roles: PUBLIC_ACCESS}
 
 when@test:
     security:
