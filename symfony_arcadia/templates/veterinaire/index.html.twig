@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EspaceVetérinaire{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="formType">
+            {{form_start(veterinaireForm)}}
+                <table>
+                    <tr>
+                        <td>{{form_label(veterinaireForm.AnimalName)}}</td>
+                        <td>{{form_widget(veterinaireForm.AnimalName, {"full_name": "name"})}}
+                    <tr>
+                        <td>{{form_label(veterinaireForm.rapport)}}</td>
+                        <td>{{form_widget(veterinaireForm.rapport, {"full_name":"rapport"})}}</td>
+                    </tr>
+                <table>
+                <button type="submit" class="btn-form">Envoyée</button>
+            {{form_end(veterinaireForm)}}
+        </div>
+    </section>
+{% endblock %}

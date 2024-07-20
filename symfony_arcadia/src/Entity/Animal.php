@@ -45,6 +45,10 @@ class Animal
     #[ORM\Column]
     private ?int $quantitee = null;
 
+    #[ORM\OneToOne(targetEntity:'RapportVeterinaire')]
+    #[ORM\JoinColumn(name:'id_last_rapport',referencedColumnName:'id')]
+    private ?RapportVeterinaire $LastRapport = null;
+
 
     public function getId(): ?int
     {
@@ -139,6 +143,17 @@ class Animal
     public function setQuantitee(string $Quantitee): static
     {
         $this->quantitee = $Quantitee;
+        return $this;
+    }
+
+    public function getLastRapport(): ?RapportVeterinaire
+    {
+        return $this->LastRapport;
+    }
+
+    public function setLastRapport(RapportVeterinaire $lastRapport): self
+    {
+        $this->LastRapport = $lastRapport;
         return $this;
     }
 

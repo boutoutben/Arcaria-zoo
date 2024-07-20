@@ -44,7 +44,6 @@ class AnimalController extends AbstractController
             ];
          $id +=1;
         }
-      
       $nbAnimal = $this->AnimalRepository->createQueryBuilder('a')
             // Filter by some parameter if you want
             // ->where('a.published = 1')
