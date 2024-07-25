@@ -7,7 +7,9 @@
         <div class='title_administration'>
             <h1 class='titleAdministrationText'>Espace administration</h1>
         </div>
+        <h1 class="title text-center">Créer un compte</h1>
         <div class="formType">
+            <h1 class="sub-title">Créer un nouvelle employée ou vétérinaire</h1>
             {{form_start(form)}}
                     <div class="radioEmploie">
                         <div class="employer">
@@ -26,11 +28,48 @@
                             <td>{{form_label(form.password)}}</td>
                             <td>{{form_widget(form.password,{'full_name': "password"})}} </td>
                         </tr>
-                    <table>
+                    </table>
                     <button type="submit" class='btn-form'>Inscription</button>
             
             {{form_end(form)}}  
         </div>
-        <div>
+        <h1 class="title text-center">Vue sur les rapports des vétérinaire</h1>
+        <div class="formType">
+            <h1 class="sub-title text-center">Vue sur les rapports des vétérinaire</h1>
+            {{form_start(filterAvisAdministration)}}
+                <table>
+                    <tr>
+                        <td>{{form_label(filterAvisAdministration.nameAnimal)}}</td>
+                        <td>{{form_widget(filterAvisAdministration.nameAnimal, {"full_name":"name"})}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b>or</b></td>
+                    </tr>
+                    <tr>
+                        <td>{{form_label(filterAvisAdministration.date)}}</td>
+                        <td>{{form_widget(filterAvisAdministration.date, {"full_name":"date"})}}</td>
+                    </tr>
+                </table>
+                <button type="submit" class='btn-form'>Générer</button>
+            {{form_end(filterAvisAdministration)}}
+        </div>
+            {% if rapportVeterinaire != null %}
+            
+                {% for rapport in rapportVeterinaire %}
+                    <div class="ViewRapportVet">
+                        <p class="rapportDate">{{rapport.date.format("d/m/Y")}}</p>
+                        <p>{{rapport.detail}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        <div class="viewAnimaux">
+            {% for animal in allAnimaux %}
+                <div class="detailForVet">
+                    <p class="text-center">{{animal.name}}: {{animal.Races.label}}</p>
+                    <p class="text-center"> {{animal.nbClick}}</p>
+                </div>
+            {% endfor %}
+        </div>
     </section>
 {% endblock content %}

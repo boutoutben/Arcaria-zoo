@@ -7,6 +7,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Animal;
 use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\DateImmutableType;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[ORM\Entity(repositoryClass: RapportVeterinaireRepository::class)]
 class RapportVeterinaire
@@ -17,18 +21,19 @@ class RapportVeterinaire
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?\DateTime $Date = null;
+    private ?DateTime $Date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $detail = null;
 
     #[ORM\OneToOne(targetEntity:'Animal')]
     #[ORM\JoinColumn(name:'id_animal',referencedColumnName:'id')]
-    private ?Animal $Animal = null;
+    private ?Animal $animal = null;
 
     public function __construct() {
-        /*$this->_csrf_token= bin2hex(random_bytes(28));*/
-        $this->Date = new DateTime();
+        
+        $dateImmutable = new DateTime();
+        $this->setDate($dateImmutable);
     }
 
     public function getId(): ?int
@@ -36,12 +41,12 @@ class RapportVeterinaire
         return $this->id;
     }
 
-    public function getDate(): ?\DateTime
+    public function getDate(): ?DateTime
     {
         return $this->Date;
     }
 
-    public function setDate(\DateTime $date): static
+    public function setDate(DateTime $date): static
     {
         $this->Date = $date;
 
@@ -62,12 +67,12 @@ class RapportVeterinaire
 
     public function getAnimal(): ?Animal
     {
-        return $this->Animal;
+        return $this->animal;
     }
 
     public function setAnimal(Animal $animal): static
     {
-        $this->Animal = $animal;
+        $this->animal = $animal;
 
         return $this;
     }

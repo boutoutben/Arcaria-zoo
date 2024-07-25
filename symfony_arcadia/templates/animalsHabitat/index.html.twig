@@ -29,12 +29,11 @@
                             {% if animalData.animal.LastRapport != null %}
                             <button onClick="showDetail({{nb}})">détail rapport</button>
                             <h3 class="margin-40 hidden" id="rapportVet[{{nb}}]">Detail rapport: {{animalData.animal.LastRapport.detail}}</h3>
-                            {% endif %}
-                            
+                            {% endif %}  
                         </div>
                        
                     </div>
-                    <div class="animal text-center" onClick="presentation({{nb}},{{nbAnimal}})">
+                    <div class="animal text-center" onClick="presentation({{nb}},{{nbAnimal}}, {{animalData.animal.id}})">
                         <img src="../img/{{animalData.animal.img}}" width="200px" height="200px" class="img-animal">
                         <h3>{{animalData.animal.name}}</h3>
                         <p>{{animalData.animal.etat}}</p>

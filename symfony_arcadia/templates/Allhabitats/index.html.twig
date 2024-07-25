@@ -16,7 +16,8 @@
             <div class="habitat" onClick = "window.location.replace(`habitats/{{habitat.id}}`);">
                 <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}" width="400px" height="250px"> 
                 <h3 class="text-center">{{habitat.name}}</h3>
-                <p class="text-center">{{habitat.description}}</p>
+                <p class="text-center"><b>description</b>: {{habitat.description}}</p>
+                <p class="text-center"><b>commentaire vétérinaire</b>: {{habitat.commentaire}}</p>
             </div>
         {% endfor %}
     </div>

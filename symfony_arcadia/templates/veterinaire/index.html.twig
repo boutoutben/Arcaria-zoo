@@ -4,7 +4,9 @@
 
 {% block content %}
     <section>
+        <h1 class="text-center title">Rapport vétérinaire</h1>
         <div class="formType">
+            <h1 class="sub-title">Mettre un nouveau rapport</h1>
             {{form_start(veterinaireForm)}}
                 <table>
                     <tr>
@@ -14,9 +16,39 @@
                         <td>{{form_label(veterinaireForm.rapport)}}</td>
                         <td>{{form_widget(veterinaireForm.rapport, {"full_name":"rapport"})}}</td>
                     </tr>
-                <table>
+                </table>
                 <button type="submit" class="btn-form">Envoyée</button>
             {{form_end(veterinaireForm)}}
         </div>
+        <h1 class="text-center title">commentaire habitat</h1>
+        <div class="formType">
+            <h1 class="sub-title">Mettre un commentaire sur un habitat</h1>
+            {{form_start(commentaireForm)}}
+                <table>
+                    <tr>
+                        <td>{{form_label(commentaireForm.habitatName)}}</td>
+                        <td>{{form_widget(commentaireForm.habitatName, {"full_name": "nameHabitat"})}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{form_label(commentaireForm.commentaire)}}</td>
+                        <td>{{form_widget(commentaireForm.commentaire, {"full_name": "commentaire"})}}</td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn-form">créer</button>
+            {{form_end(commentaireForm)}}
+        </div>
+        <div class='animauxZoo'>
+            <h1 class="text-center sub-title">Vue de l'alimentation des animaux</h1>
+            <div class="viewAnimaux">
+                {% for animal in allAnimaux %}
+                    <div class="detailForVet">
+                        <p class="margin-10">nom: {{animal.name}}</p>
+                        <p class="margin-10">race: {{animal.Races.label}}</p>
+                        <p class="margin-10">date du dernier repas: {{(animal.date).format("d-m-Y H:m")}}</p>
+                        <p class="margin-10">nourriture: {{animal.nourriture}}</p>
+                        <p class="margin-10">quantitée: {{animal.quantitee}}<p>
+                    </div>
+                {% endfor %}
+            </div>
     </section>
-{% endblock %}
+{% endblock content %}

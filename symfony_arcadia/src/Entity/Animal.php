@@ -49,6 +49,9 @@ class Animal
     #[ORM\JoinColumn(name:'id_last_rapport',referencedColumnName:'id')]
     private ?RapportVeterinaire $LastRapport = null;
 
+    #[ORM\Column]
+    private ?int $nbClick = null;
+
 
     public function getId(): ?int
     {
@@ -157,7 +160,16 @@ class Animal
         return $this;
     }
 
+    public function getNbClick(): ?int
+    {
+        return $this->nbClick;
+    }
 
+    public function setNbClick(int $nbClick): static
+    {
+        $this->nbClick = $nbClick;
+        return $this;
+    }
 
 }
 
