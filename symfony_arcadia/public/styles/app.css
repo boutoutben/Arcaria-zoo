@@ -1,46 +1,41 @@
 /*navbar*/
-body{
-    margin: -25px;
-}
 
 .navbar{
-    margin-top: 20px;
     background-color: #292929;
     color: white;
     display: flex;
     flex-direction: row;
-    width: 1280x;
-    height: 60px;
-    margin-bottom: 100px;
+    width: 100%;
+    height: 3%;
 }
 .navbar a{
     text-decoration: none;
     color:white;
 }
 
-.logo{
-    margin-left:21px;
-}
-
 .zoo_name{
     position: absolute;
-    margin-left:175px;
-    font-size: 30px;
+    margin-left:8%;
+    font-size: 1.5vw;
     align-self: center;
 }
 
 .link{
     position: absolute;
     display: flex;
-    margin-left: 418px;
+    margin-left: 23%;
+    width: 75%;
+    height: 100%;
+    background-color: rgb(255, 255, 225, .2);
 }
 
 .link-navbar{
     border: 1px solid black;
-    width: 297px;
-    height: 58px;
+    width: 100%;
+    height: 100%;
     text-align: center;
     align-content: center;
+    font-size: 1.5vw;
 }
 
 /*présentation du zoo*/
@@ -48,19 +43,18 @@ body{
 .presentation{
     color: white;
     position: relative;
-    background-color: rgb(183,158,158,0.7);
-    margin: 100px 150px;
+    background-color: rgb(183,158,158,.8);
+    margin: 5% 8%;
 }
 .description_img{
     display: flex;
     justify-content: space-between;
-    margin: 0 50px;
 }
 .description{
-    margin-left: 100px;
+    margin-left: 20%;
 }
 .img_presentation{
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 /*element to do*/
@@ -70,7 +64,7 @@ body{
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: 250px;
     grid-gap: 60px;
-    margin: 0 150px;
+    margin: 0 8%;
     text-align: center;
     color: white;
 }
@@ -96,11 +90,52 @@ body{
     background-color: rgb(59,63,48,0.76);
 }
 
+.scheduleDiv{
+    background-color: rgba(39, 34, 34, 0.3);
+    margin: 25px 20%;
+    color: white;
+}
+
+.scheduleRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+    font-size: 1vw;
+}
+
+.scheduleFont{
+    font-size: 1.5vw;
+}
+
+.btn-horraire{
+    color: white;
+    margin-left: 27%;
+    margin-top: 1%;
+    background-color: #255316;
+    border-radius: 15px;
+}
+
+.title_modifSchedule{
+    background-image: url("../img/modifScheduleBackground.png");
+    margin-bottom: 50px;
+}
+
+.titleModifScheduleText{
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 2vw;
+}
+
 /*avis*/
 
 .avisZoo{
     background-color: rgb(167, 157, 157,0.75);
-    margin: 50px 150px;
+    margin: 50px 8%;
     text-align: center;
     color: white;
 }
@@ -109,11 +144,11 @@ body{
     background-color: rgb(167, 167, 167);
     display: flex;
     margin: 10px 100px;
-    font-size: 30px;
+    font-size: 1.5vw;
 }
 
 .avis .pseudo{
-    margin-left: 10%;
+    margin-left: 5%;
 }
 .avis .avis-text{
     margin-left: 1.5%;
@@ -126,16 +161,17 @@ body{
 
 .valid-avis{
     background-color: #325f20;
-    margin:50px 200px;
+    margin:10% 20%;
     color: white;
 }
 
 .avisTitle{
     margin-left: 40%;
+    font-size: 2.5vw;
 }
 
 .btn-avis{
-    margin-left: 40%;
+    margin-left: 30%;
     margin-top: 1%;
     border-radius: 15px;
 }
@@ -143,7 +179,7 @@ body{
 .avisToValid{
     display: flex;
     flex-direction: row;
-    margin: 15px 10%;
+    margin: 2% 10%;
 }
 .avisSpace{
     font-size: 50px;
@@ -151,32 +187,35 @@ body{
 
 .yesButton{
     margin-left:25px;
-    font-size: 50px;
+    font-size: .8vw;
 }
 
 .noButton{
-    font-size: 50px;
+    font-size: .8vw;
 }
 
 
 /*services page*/ 
-.servcicesPageTitle{
-    color: white;
-    font-size: 50px;
-    margin-bottom: 50px;
+.description_img p{
+    margin: 1%;
 }
-
 .allEle{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 500px;
+    grid-template-columns: repeat(2, 48%);
+    grid-template-rows: auto;
     grid-gap: 100px;
     color: white;
-    margin: 0 150px;
+    margin: 0 8%;
+    
 }
 
 .grid-ele{
     background-color: rgb(59, 63, 48, 0.75);
+    padding: 1% 0 3% 0;
+}
+
+.serviceImg{
+    margin-right: 20px;
 }
 
 
@@ -184,10 +223,10 @@ body{
 .allHabitats{
     color: white;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3,29%);
     grid-template-rows: auto;
-    grid-gap: 100px;
-    margin: 50px 250px;
+    grid-gap: 8%;
+    margin: 50px 10%;
 
 }
 
@@ -207,28 +246,37 @@ body{
     grid-template-rows: auto;
     grid-gap: 100px 50px;
     color: white;
-    margin:0 150px;
+    margin:50px 8%;
 }
 
 .icon-50{
-    font-size: 50px;
     justify-self: end;
     margin-left: 50px;
+}
+
+.habitatImg{
+    width: 20vw;
+    height: 10vw;
+}
+
+.habitatFont{
+    font-size: 1.7vw;
 }
 
 .presentation_animaux{
     position: absolute;
     z-index: 10;
     background-color: rgb(138,226,107);
-    margin-left: 25px;
-    margin-bottom: 50px;
-    width: 500px;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    width: 25%;
+    height: auto;
 }
 
 
 
 .margin-40{
-    margin-left: 40px;
+    margin-left: 2%;
 }
 
 
@@ -246,18 +294,24 @@ body{
 }
 
 .img-presentation-animal{
-    margin-left: 75px;
-    margin-bottom: 25px;
+    margin-left: 12%;
+    margin-bottom: 1%;
 }
+
+
 
 /*connection pages*/
 
 .connectionTitle{
     background-image: url("../img/connectionTitleBackground.jpg");
-    margin-top:-100px;
     margin-bottom: 75px;
-    padding:75px 0;
+}
+
+.bigTitleBackground{
+    background-color: rgb(0, 0, 0,.5);
+    padding:100px 0;
     text-align: center;
+    color: white;
 }
 
 .formType{
@@ -265,17 +319,16 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 952px;
+    width: 84%;
     height: auto;
     font-size: 30px;
-    margin-left: 450px;
-    margin-bottom: 100px;
+    margin: 50px 8%;
     padding: 25px;
     color: white;
 }
 
 .form-champ{
-    width: 300px;
+    width: 400px;
     height: 50px;
     color: black;
     margin:25px 0;
@@ -301,10 +354,7 @@ body{
 
 .titleContact{
     background-image: url("../img/contactTitleBackground.jpg");
-    margin-top:-100px;
     margin-bottom: 75px;
-    padding:75px 0;
-    text-align: center;
     background-position: 50%;
 }
 
@@ -316,7 +366,7 @@ body{
 /*modifier*/
 #btn-modif{
     background-color: rgb(138,226,107);
-    margin: -75px 0 -75px 200px;
+    margin: 2% 0 2% 7% ;
     width: 200px;
     height: 100px;
     border-radius: 50%;
@@ -325,23 +375,19 @@ body{
 /*administration page*/
 .title_administration{
     background: url("../img/espaceAdministrationBackground.jpg");
-    display: flex;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    margin-top:-150px;
-    width: 100%;
-    height: 300px;
-    background-position: 50% 25%;
     color: white;
+    background-position: 50% 70%;
+    margin-bottom: 50px;
 }
 
 .titleAdministrationText{
-    background-color: rgb(0, 0, 0, 0.3);
-    padding: 8% 41.5%;
-    margin-top: -1%;
-    font-size: 50px;
+    background-color: rgb(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+    width: 100%;
+    font-size: 2vw;
 }
-
 .radioEmploie{
     display: flex;
     flex-direction: row;
@@ -353,12 +399,8 @@ body{
 
 .modifier-title{
     background-image: url("../img/modifierTitleBackground.jpg");
-    display: flex;
-    background-size: 100% 100%;
+    background-size: 100%;
     background-repeat: no-repeat;
-    margin-top:-150px;
-    width: 100%;
-    height: 300px;
     background-position: 50% 25%;
     margin-bottom: 100px;
     color: white;
@@ -366,10 +408,12 @@ body{
 
 
 .modifier-title-text{
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.3);
-    padding: 7.6% 43.5%;
-    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 100px 0;
+    font-size: 2vw;
 }
 
 .form-choice{
@@ -407,15 +451,10 @@ body{
 
 .espace-employee-title{
     background-image: url("../img/employeeSpaceTitleBackground.jpg");
-    display: flex;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    margin-top:-100px;
-    width: 100%;
-    height: 250px;
     background-position: 50%;
+    background-size: 100%;
+    background-repeat: no-repeat;
     margin-bottom: 100px;
-    color: white;
 }
 
 .espace-employee-title-text{
@@ -424,22 +463,23 @@ body{
     width: 100%;
     height: 250px;
     justify-self: center;
-    font-size: 70px;
+    font-size: 3vw;
 }
 
 .animauxZoo{
     color: white;
     background-color: #304d25;
-    margin: 50px 100px;
+    margin: 0 8%;
+    padding-bottom: 25px;
 }
 
 .animauxEating{
     color: white;
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5,15%);
     grid-template-rows: auto;
     grid-gap: 50px;
-    margin: 50px 150px;
+    margin: 50px 8%;
 }
 
 .btn-selection{
@@ -453,7 +493,7 @@ body{
 }
 .animalEat label{
     width: 150px;
-    height: 75px;
+    height: auto;
     background-color: rgb(75, 124, 58);
 }
 
@@ -463,63 +503,63 @@ body{
     margin-top:25px;
 }
 
+/* verinaire*/
+
+.espace-veteraine-title{
+    background-image: url("../img/veterinaireSpaceBackground.jpg");
+    background-position: 40% 40%;
+}
+
 /*footer*/
 
 .footer{
+    position: 0;
     left: 0;
-    bottom: 0px;
-    margin-bottom: -20px;
+    bottom: 0;
     width: 100%;
     background-color: #292929;
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-bottom: -20px;
     color: white;
-}
-.footer_firstLine{
-    display: flex;
-}
-.schedule{
-    background-color: rgba(248, 242, 242, 0.2);
-    margin: 10px 150px 10px 150px;
-    padding: 10px 20px;
-    width: 800px;
-    height: 400px;
-}
-.scheduleLayout{
-    margin-top: 25px;
-    text-align: center;
-    font-size: 30px;
 }
 
 .map{
-    margin: 10px 0 0 150px;
-    background-image: url(../img/zooPlace.jpg);
-    background-repeat: no-repeat; 
-    width: 800px;
-    height: 400px;
+    margin: 10px 30%;
+    width: 30%;
+    height: auto;
 }
 
 
 .copyrightDiv{
     background-color: #1f251d;
-    margin-left: 100px;
     margin-top: 25px;
-    font-size: 25px;
+    font-size: 1.5vw;
+}
+
+.copyright{
+    margin-left: 2%;
+}
+
+.dashbord{
+    background-color: #255316;
+    margin:auto 9%;
+    text-align: center;
+    color: white;
 }
 
 .viewAnimaux{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,20.3%);
     grid-template-rows: auto;
     grid-gap: 50px;
-    margin: 50px 150px;
     color: white;
+    margin: 3%;
 }
 
 .detailForVet{
     background-color: #499b2b;
-    width: 320px;
+    width: 100%;
     height: auto;
-    margin: 10px;
 }
 
 .margin-10{
@@ -528,13 +568,65 @@ body{
 }
 
 .title{
-    margin-bottom: 25px;
-    font-size: 50px;
+    margin: 50px 0;
+    text-align: center;
     color: white;
+    font-size: 3vw;
 }
 
 .sub-title{
-    margin: 25px;
-    font-size: 40px;
+    font-size: 2.5vw;
+    color: white;
 }
 
+.title-text{
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 2vw;
+}
+
+.avis-title{
+    background-image: url("../img/avisBackground.jpg");
+    background-position: 50% 30%;
+}
+
+/* error */
+
+.errorHead{
+    background-color: rgb(211, 72, 72);
+    width: 100%;
+    padding: 75px 0;
+    text-align: center;
+    border: 5px solid white;
+    color: white;
+    
+}
+
+.btn-error{
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 12px;
+    padding: 30px 60px;
+    font-size: 30px;
+    background-color: rgb(100, 10, 10);
+    color: white;
+
+}
+
+.errorFix{
+    color: white;
+    margin-left: 4%;
+}
+
+.copyrightError{
+    color: white;
+    background-color: #1f251d;
+    margin-top: 20%;
+    font-size: 1vw;
+    width: 100%;
+}

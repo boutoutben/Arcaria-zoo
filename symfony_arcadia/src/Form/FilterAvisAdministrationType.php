@@ -16,14 +16,14 @@ class FilterAvisAdministrationType extends AbstractType
     {
         $builder
             ->add('nameAnimal', TextType::class, [
-                "label"=> "nom de l'animal",
+                "label"=> "nom de l'animal: ",
                 "required" => false,
                 "attr" => [
                     "class" => "form-champ"
                 ]
             ])
             ->add("date", DateType::class, [
-                "label" => "date",
+                "label" => "date: ",
                 "required" => false,
                 "attr" => [
                     "class" => "form-champ",

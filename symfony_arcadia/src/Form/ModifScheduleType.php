@@ -2,46 +2,36 @@
 
 namespace App\Form;
 
-use App\Entity\AllHabitats;
-use App\Entity\Animal;
-use App\Entity\Races;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ModifAnimalCreateType extends AbstractType
+class ModifScheduleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'name: ',
-                'required' => true,
+            ->add('jour', TextType::class, [
+                "label" => "jour: ",
+                "required" => true, 
                 "attr" => [
                     "class" => "form-champ"
                 ]
             ])
-            ->add('etat', TextType::class, [
-                'label' => 'etat: ',
+            ->add("am", TextType::class, [
+                "label" => "Heure du matin: ",
                 "required" => true,
                 "attr" => [
                     "class" => "form-champ"
                 ]
             ])
-
-            ->add("race", TextType::class, [
-                "label" => "race: ",
+            ->add("pm", TextType::class, [
+                "label" => "Heure de l'après-midi: ",
                 "required" => true,
                 "attr" => [
                     "class" => "form-champ"
                 ]
-            ])
-
-            ->add("img", FileType::class, [
-                "required" => true,
             ])
         ;
     }
@@ -49,7 +39,7 @@ class ModifAnimalCreateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            // Configure your form options here
         ]);
     }
 }

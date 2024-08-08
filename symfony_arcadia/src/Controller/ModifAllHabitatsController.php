@@ -112,29 +112,36 @@ class ModifAllHabitatsController extends AbstractController
         if(isset($nameToChange)){
             $habitats = $this->AllHabitatsRepository->findOneBy(['name' => $nameToChange]);
 
-            if($name != ""){
-                $habitats->setName($name);
-
-            }
-            if($description != ""){
-                $habitats->setDescription($description);
-            }
-            if(isset($image)){
-                try {
-                    $image->move($uploadDir, $image->getClientOriginalName());
-                    // Success logic here
-                } catch (FileException $e) {
-                    // Handle exception if something happens during file upload
+            if($habitats != null)
+            {
+                if($name != ""){
+                    $habitats->setName($name);
+    
                 }
-                $habitats->setImg($image->getClientOriginalName());
+                if($description != ""){
+                    $habitats->setDescription($description);
+                }
+                if(isset($image)){
+                    try {
+                        $image->move($uploadDir, $image->getClientOriginalName());
+                        // Success logic here
+                    } catch (FileException $e) {
+                        // Handle exception if something happens during file upload
+                    }
+                    $habitats->setImg($image->getClientOriginalName());
+                }
+                    
+                    
+                $em->flush();
+    
+                return new RedirectResponse(
+                    $this->router->generate('app_home')
+                );
             }
-                
-                
-            $em->flush();
-
-            return new RedirectResponse(
-                $this->router->generate('app_home')
-            );
+            else{
+                return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+            }
+            
         }
 
     }
@@ -144,14 +151,21 @@ class ModifAllHabitatsController extends AbstractController
     {
         $nameToDelete = $request->request->get("nameToDelete");
         $habitats = $this->AllHabitatsRepository->findBy(['name'=>$nameToDelete]);
-        foreach ($habitats as $habitat) {
-            $em->remove($habitat);
+        if($habitats != null)
+        {
+            foreach ($habitats as $habitat) {
+                $em->remove($habitat);
+            }
+            $em->flush();
+    
+            return new RedirectResponse(
+                $this->router->generate('app_home')
+            );
         }
-        $em->flush();
-
-        return new RedirectResponse(
-            $this->router->generate('app_home')
-        );
+        else{
+            return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+        }
+        
     }
     
 

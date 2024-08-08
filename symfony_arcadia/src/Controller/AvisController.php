@@ -7,12 +7,14 @@ use App\Form\CreateAvisType;
 use App\Repository\AvisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use PhpParser\Node\Name;
+use PhpParser\Node\Stmt\Global_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\RouterInterface;
+
 
 #[Route('/avis', name: 'app_avis_')]
 class AvisController extends AbstractController
@@ -27,30 +29,66 @@ class AvisController extends AbstractController
     }
 
     #[Route('/index', name: 'index')]
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(CreateAvisType::class, null, [
-            "method" => "post",
-            "action" => $this->generateUrl("app_avis_create")
+        $Avis = new Avis();
+        $form = $this->createForm(CreateAvisType::class, $Avis,[
+            "method" => "POST",
         ]);
+
+        
+
+
+
+        $pseudo = $request->request->get("pseudo");
+        $avis = $request->request->get("avis");
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $Avis->setPseudo($pseudo);
+            $Avis->setAvis($avis);
+            $Avis->setValid(false);
+            dump($form->getData()); // Shows the data the form is working with
+            dump($form);
+            dd($form->getErrors(true, true)); // Shows the validation errors
+        }
+        if ($form->isSubmitted()&&$form->isValid())
+        {
+            $em->persist($Avis);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->router->generate('app_home')
+            );
+        }
+
         return $this->render('avis/index.html.twig', [
             'controller_name' => 'AvisController',
-            "form" => $form
+            "form" => $form->createView(),
         ]);
     }
-
     #[Route("/create", name: "create")]
     public function create(Request $request, EntityManagerInterface $em):Response
     {
+
+
         $pseudo = $request->request->get("pseudo");
         $avis = $request->request->get("avis");
 
+
         $AvisEntity = new Avis();
 
-        if(isset($pseudo) && isset($avis))
+        $form = $this->createForm(CreateAvisType::class, null);
+
+        $form->handleRequest($request);
+
+
+
+        if ($form->isSubmitted())
         {
+            
             $AvisEntity->setPseudo($pseudo);
-            $AvisEntity->setText($avis);
+            $AvisEntity->setAvis($avis);
             $AvisEntity->setValid(false);
 
             $em->persist($AvisEntity);

@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -32,7 +34,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route("/register", name:"app_register")]
-    public function register(Request $request,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher)
+    public function register(Request $request,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher,MailerInterface $mailer)
     {
         $choice = $request->request->get('choix');
         $username = $request->request->get("username");
@@ -51,6 +53,14 @@ class SecurityController extends AbstractController
 
             $em->persist($user);
             $em->flush();
+
+            $email = (new Email())
+                ->from('jose.direction@gmail.com')
+                ->to($username)
+                ->subject("Information pour votre espace attitrer")
+                ->text("Votre username est ".$username. ". Pour votre mot de passe merci de me rencontrer pour une question de sécurité");
+
+            $mailer->send($email);
             return new RedirectResponse(
                 $this->router->generate('app_home')
             );
@@ -63,28 +73,38 @@ class SecurityController extends AbstractController
 
 
     #[Route("/login", name:"app_login")]
-    
     public function login(Request $request, AuthenticationUtils $authenticationUtils, SessionInterface $session): Response
+{
+    // Get the login error if there is one
+    $error = $authenticationUtils->getLastAuthenticationError();
+
+    // Last username entered by the user
+    $lastUsername = $authenticationUtils->getLastUsername();
+
+    // Retrieve form data from session if it exists
+    $formData = $session->get('formData', []);
+
+    // Create the login form with method 'POST'
+    $form = $this->createForm(ConnectionType::class, null, [
+        'method' => 'POST',
+        'data' => $formData, // Optionally set data if needed
+    ]);
+
+    // Clear the form data from session after retrieving it
+    $session->remove('formData');
+
+    // Render the login form and pass the necessary variables
+    return $this->render('security/index.html.twig', [
+        'form' => $form->createView(), // Ensure you're passing the form view to the template
+        'error' => $error,
+        'last_username' => $lastUsername,
+    ]);
+}
+
+    #[Route('/loginError', name:"app_login_error")]
+    public function loginError():Response
     {
-        // Get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // Last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        // Retrieve form data from session if it exists
-
-        // Create the login form
-        $form = $this->createForm(ConnectionType::class, [
-            'method' => 'POST',
-        ]);
-
-        // Clear the form data from session after retrieving it
-
-        return $this->render('security/index.html.twig', [
-            'form' => $form->createView(),
-            'error' => $error,
-        ]);
+        return $this->render("bundles/TwigBundle/Exception/failLogin.html.twig");
     }
 
     /**

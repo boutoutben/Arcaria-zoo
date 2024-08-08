@@ -25,7 +25,7 @@ class ModifAnimalUpdateType extends AbstractType
             ]
         ])
         ->add('name', TextType::class, [
-            'label' => 'name',
+            'label' => 'name: ',
             'required' => false,
             "attr" => [
                 "class" => "form-champ"

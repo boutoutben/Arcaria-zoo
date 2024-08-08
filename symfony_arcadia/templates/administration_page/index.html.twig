@@ -63,13 +63,16 @@
                     </div>
                 {% endfor %}
             {% endif %}
-        <div class="viewAnimaux">
-            {% for animal in allAnimaux %}
-                <div class="detailForVet">
-                    <p class="text-center">{{animal.name}}: {{animal.Races.label}}</p>
-                    <p class="text-center"> {{animal.nbClick}}</p>
-                </div>
-            {% endfor %}
+        <div class='dashbord'>
+            <h1 class="sub-title">Dashbord</h1>
+            <div class="viewAnimaux">
+                {% for animal in allAnimaux %}
+                    <div class="detailForVet">
+                        <p class="text-center">{{animal.name}}: {{animal.Races.label}}</p>
+                        <p class="text-center"> {{animal.nbClick}}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 {% endblock content %}

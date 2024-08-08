@@ -2,11 +2,11 @@
 
 {% block title %}habits{% endblock %}
 
-{% block style %}url("img/allHabitatsBackground.jpg"){% endblock style %}
+{% block style %}img/allHabitatsBackground.jpg{% endblock style %}
 
 {% block content %}
 <section class="habitatsPage">
-        {%if is_granted("ROLE_ADMINISTRATION") %}
+        {% if is_granted("ROLE_ADMINISTRATION") %}
             <div class="modifier" onClick="btnModif('/modifAllHabitats/index')">
                 <button id="btn-modif">Modifier</button>
             </div>
@@ -14,10 +14,10 @@
     <div class="allHabitats">
         {% for habitat in allHabitats %}
             <div class="habitat" onClick = "window.location.replace(`habitats/{{habitat.id}}`);">
-                <img class="habitatImg mx-auto d-block habitatImg" src="img/{{habitat.img}}" width="400px" height="250px"> 
-                <h3 class="text-center">{{habitat.name}}</h3>
-                <p class="text-center"><b>description</b>: {{habitat.description}}</p>
-                <p class="text-center"><b>commentaire vétérinaire</b>: {{habitat.commentaire}}</p>
+                <img class="habitatImg mx-auto d-block" src="img/{{habitat.img}}" width="85%" height="40%"> 
+                <h3 class="text-center sub-title">{{habitat.name}}</h3>
+                <p class="text-center habitatFont"><b>description</b>: {{habitat.description}}</p>
+                <p class="text-center habitatFont"><b>commentaire vétérinaire</b>: {{habitat.commentaire}}</p>
             </div>
         {% endfor %}
     </div>

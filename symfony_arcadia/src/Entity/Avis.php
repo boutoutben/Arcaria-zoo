@@ -4,20 +4,21 @@ namespace App\Entity;
 
 use App\Repository\AvisRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
 class Avis
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Pseudo = null;
+    private ?string $pseudo = null;
 
     #[ORM\Column(length: 510)]
-    private ?string $text = null;
+    private ?string $avis = null;
 
     #[ORM\Column]
     private ?bool $isValid = null;
@@ -29,24 +30,24 @@ class Avis
 
     public function getPseudo(): ?string
     {
-        return $this->Pseudo;
+        return $this->pseudo;
     }
 
     public function setPseudo(string $Pseudo): static
     {
-        $this->Pseudo = $Pseudo;
+        $this->pseudo = $Pseudo;
 
         return $this;
     }
 
-    public function getText(): ?string
+    public function getAvis(): ?string
     {
-        return $this->text;
+        return $this->avis;
     }
 
-    public function setText(string $text): static
+    public function setAvis(string $avis): self
     {
-        $this->text = $text;
+        $this->avis = $avis;
 
         return $this;
     }

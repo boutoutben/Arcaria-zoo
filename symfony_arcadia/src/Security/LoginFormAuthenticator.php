@@ -74,9 +74,11 @@ class LoginFormAuthenticator extends AbstractAuthenticator
         );
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        dd('failure', $exception);
+        return new RedirectResponse(
+            $this->router->generate('app_login_error')
+        );
     }
 
 //    public function start(Request $request, AuthenticationException $authException = null): Response

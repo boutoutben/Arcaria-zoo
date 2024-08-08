@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/app.css">
+</head>
+<body>
+    <style>
+        body{
+            background-color:#920e0e;
+        }
+    </style>
+    <div class="errorHead">
+        <h1>Page d'erreur</h1>
+    </div>
+    <div>
+        <h1 class="title">{% block ErrorMessage %}{% endblock ErrorMessage %}</h1>
+        <p class="sub-title errorFix">Essayer encore, après d'être revenu sur la page d'accuil</p>
+        <button class="btn-error" onClick="window.location.href = `/`;">retour accuil</button>
+    </div>
+    <div class="copyrightError">
+        <p class="copyright">arcadia zoo © 2024</p>
+    </div>
+</body>
+</html>

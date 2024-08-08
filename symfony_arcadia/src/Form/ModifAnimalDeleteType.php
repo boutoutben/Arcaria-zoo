@@ -17,7 +17,7 @@ class ModifAnimalDeleteType extends AbstractType
     {
         $builder
             ->add('nameToDelete', TextType::class, [
-                "label" => "nom de l'animal à supprimer",
+                "label" => "nom de l'animal à supprimer: ",
                 "required" => true,
                 "attr" => [
                     "class" => "form-champ"

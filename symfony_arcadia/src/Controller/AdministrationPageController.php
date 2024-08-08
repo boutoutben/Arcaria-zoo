@@ -83,7 +83,7 @@ class AdministrationPageController extends AbstractController
         $em->flush();
         
         header('Location: ' . $_SERVER["HTTP_REFERER"] );
-        sleep(10);
+        usleep(7000000);
         exit;
         
     }

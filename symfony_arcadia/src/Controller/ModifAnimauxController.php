@@ -133,40 +133,46 @@ class ModifAnimauxController extends AbstractController
 
         if(isset($nameToChange)){
             $animal = $this->AnimalRepository->findOneBy(['name' => $nameToChange]);
-
-            if($name != ""){
-                $animal->setName($name);
-
-            }
-            if($etat != ""){
-                $animal->setEtat($etat);
-            }
-            if($race != "" && $raceToChange != "")
+            if($animal != null)
             {
-                $raceEntity = $this->RacesRepository->findOneBy(['label'=> $raceToChange]);
-                if($race != null)
+                if($name != ""){
+                    $animal->setName($name);
+    
+                }
+                if($etat != ""){
+                    $animal->setEtat($etat);
+                }
+                if($race != "" && $raceToChange != "")
                 {
-                    $raceEntity->setLabel($race);
+                    $raceEntity = $this->RacesRepository->findOneBy(['label'=> $raceToChange]);
+                    if($race != null)
+                    {
+                        $raceEntity->setLabel($race);
+                    }
+                    
                 }
-                
-            }
-            if(isset($image)){
-                try {
-                    $image->move($uploadDir, $image->getClientOriginalName());
-                    // Success logic here
-                } catch (FileException $e) {
-                    // Handle exception if something happens during file upload
+                if(isset($image)){
+                    try {
+                        $image->move($uploadDir, $image->getClientOriginalName());
+                        // Success logic here
+                    } catch (FileException $e) {
+                        // Handle exception if something happens during file upload
+                    }
+                    $animal->setImg($image->getClientOriginalName());
                 }
-                $animal->setImg($image->getClientOriginalName());
+                    
+                    
+                $em->flush();
+    
+                return new RedirectResponse(
+                    $this->router->generate('app_home')
+                );
             }
-                
-                
-            $em->flush();
-
-            return new RedirectResponse(
-                $this->router->generate('app_home')
-            );
+            else{
+                return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+            }
         }
+           
 
     }
 
@@ -175,30 +181,37 @@ class ModifAnimauxController extends AbstractController
     {
         $nameToDelete = $request->request->get("nameToDelete");
         $animals = $this->AnimalRepository->findBy(['name'=>$nameToDelete]);
-        foreach ($animals as $animal) {
-            $nbAnimal = $this->AnimalRepository->createQueryBuilder('a')
-            ->select('count(a.id)')
-            ->Where("a.race = {$animal->getRaces()->getId()}")            
-            ->getQuery()
-            ->getSingleScalarResult();
-            $em->remove($animal);
-            
-        }
-
-        if($nbAnimal == 1)
+        if($animals !=  null)
         {
-            $race = $this->RacesRepository->findBy(["label" => $animal->getRaces()->getLabel()]);
-            foreach($race as $race)
-            {
-                $em->remove($race);
+            foreach ($animals as $animal) {
+                $nbAnimal = $this->AnimalRepository->createQueryBuilder('a')
+                ->select('count(a.id)')
+                ->Where("a.race = {$animal->getRaces()->getId()}")            
+                ->getQuery()
+                ->getSingleScalarResult();
+                $em->remove($animal);
+                
             }
+    
+            if($nbAnimal == 1)
+            {
+                $race = $this->RacesRepository->findBy(["label" => $animal->getRaces()->getLabel()]);
+                foreach($race as $race)
+                {
+                    $em->remove($race);
+                }
+            }
+    
+            
+            $em->flush();
+    
+            return new RedirectResponse(
+                $this->router->generate('app_home')
+            );
         }
-
+        else{
+            return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+        }
         
-        $em->flush();
-
-        return new RedirectResponse(
-            $this->router->generate('app_home')
-        );
     }
 }

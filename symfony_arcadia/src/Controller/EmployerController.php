@@ -61,6 +61,7 @@ class EmployerController extends AbstractController
             $animal->setNourriture($nourriture);
             $animal->setQuantitee($quantitee);
 
+
             $em->flush();
 
             return new RedirectResponse(

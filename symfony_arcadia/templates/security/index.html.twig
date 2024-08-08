@@ -1,17 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connection{% endblock %}
+{% block title %}Connecton{% endblock %}
 
 {% block content %}
     <section>
         <div class="connectionTitle">
-            <h1>Connection</h1>
+            <h1 class="bigTitleBackground">Connection</h1>
         </div>
         <div class="formType">
             <hr>
             <h2>Connection employé et vétérinaire</h2>
             <hr>
             {{form_start(form)}}
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
                 <table>
                     <tr>
                         <th>{{ form_label(form.username) }}</th>

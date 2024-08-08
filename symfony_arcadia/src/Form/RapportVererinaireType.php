@@ -14,7 +14,7 @@ class RapportVererinaireType extends AbstractType
     {
         $builder
             ->add("AnimalName", TextType::class, [
-                "label" => "Nom de l'animal",
+                "label" => "Nom de l'animal: ",
                 "required" => true,
                 "attr" => [
                     'class' => "form-champ"

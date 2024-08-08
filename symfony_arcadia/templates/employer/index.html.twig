@@ -5,7 +5,7 @@
 {% block content %}
     <section>
         <div class="espace-employee-title">
-            <h1 class="espace-employee-title-text">Espace</br> employée</h1>
+            <h1 class="bigTitleBackground">Espace employée</h1>
         </div>
         <div class="valid-avis">
             <h1 class='text-center'>Valider les avis</h1>
@@ -13,7 +13,7 @@
             {% if avisToValid != null %}
                 {% for avis in avisToValid %}
                     <div class='avisToValid'>
-                        <h4 class='avisSpace'>{{avis.pseudo }}: {{avis.text}}</h4>
+                        <h4 class='avisSpace'>{{avis.pseudo }}: {{avis.avis}}</h4>
                         <div class="yesButton">     
                             <button type="submit" class="btn btn-outline-success" name="options-outlined" id="success-outlined" onClick="window.location.href = '/avis/yes/{{avis.id}}'">Yes</button>
                         </div>
@@ -42,7 +42,7 @@
         </div>
         {% if animalSelect != -1 %}
             <div class="formType" id="animalNourriture">
-                <h2>Nourriture de {{animaux[animalSelect].name}}</h2>
+                <h2>Nourriture de {{animaux[animalSelect -1].name}}</h2>
                 {{form_start(nourritureForm)}}
                     <table>
                         <tr>

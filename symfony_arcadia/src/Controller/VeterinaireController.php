@@ -58,17 +58,28 @@ class VeterinaireController extends AbstractController
 
         if(isset($rapport) && $rapport != "" && isset($name) && $name != "")
         {
-            $rapport_veteriniaire = new RapportVeterinaire();
-            $rapport_veteriniaire->setDetail($rapport);
             $animal = $this->AnimalRepository->findOneBy(["name"=>$name]);
-            $rapport_veteriniaire->setAnimal($animal);
+            if($animal != null)
+            {
+                $rapport_veteriniaire = new RapportVeterinaire();
+                $rapport_veteriniaire->setDetail($rapport);
+                
+                $rapport_veteriniaire->setAnimal($animal);
 
-            $em->persist($rapport_veteriniaire);
-            $em->flush();
+                $em->persist($rapport_veteriniaire);
 
-            return new RedirectResponse(
-                $this->router->generate("app_home")
-            );
+                $animal->setLastRapport($rapport_veteriniaire);
+
+                $em->flush();
+
+                return new RedirectResponse(
+                    $this->router->generate("app_home")
+                );
+            }
+            else{
+                return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+            }
+            
         }
     }
 
@@ -81,13 +92,18 @@ class VeterinaireController extends AbstractController
         if(isset($nameHabitat) && $nameHabitat != "" && isset($commentaire) && $commentaire != "")
         {
             $habitat = $this->allHabitatsRepository->findOneBy(["name"=> $nameHabitat]);
-            $habitat->setCommentaire($commentaire);
+            if($habitat != null)
+            {
+                $habitat->setCommentaire($commentaire);
+                $em->flush();
 
-            $em->flush();
-
-            return new RedirectResponse(
-                $this->router->generate("app_home")
-            );
+                return new RedirectResponse(
+                    $this->router->generate("app_home")
+                );
+            }
+            else{
+                return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+            }  
         }
         return new RedirectResponse(
             $this->router->generate("app_veterinaire")

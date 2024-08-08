@@ -4,8 +4,12 @@
 
 {% block content %}
 <section>
+        <div class='avis-title'>
+            <h1 class='title-text'><b>Avis</b></h1>
+        </div>
     <div class="formType">
-        {{form_start(form) }}
+        <h1 class="sub-title">Mettez un avis</h1>
+        {{form_start(form)}}
             <table>
                 <tr>
                     <td>{{form_label(form.pseudo)}}</td>

@@ -9,6 +9,7 @@ use App\Form\ModifServicesDeleteType;
 use App\Form\ModifServicesUpdateType;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -109,32 +110,38 @@ class ModifServicesControler extends AbstractController
         $uploadDir = $this->getParameter('upload_directory');
 
         if(isset($nameToChange)){
-            $services = $this->ServicesRepository->findOneBy(['name' => $nameToChange]);
-
-            if($name != ""){
+            $services = $this->ServicesRepository->findOneBy(['name' => $nameToChange]);   
+            if($services != null)
+            {
+                if($name != ""){
                 $services->setName($name);
 
-            }
-            if($description != ""){
-                $services->setDescription($description);
-            }
-            if(isset($image)){
-                try {
-                    $image->move($uploadDir, $image->getClientOriginalName());
-                    // Success logic here
-                } catch (FileException $e) {
-                    // Handle exception if something happens during file upload
                 }
-                $services->setImg($image->getClientOriginalName());
-            }
-                
-                
-            $em->flush();
+                if($description != ""){
+                    $services->setDescription($description);
+                }
+                if(isset($image)){
+                    try {
+                        $image->move($uploadDir, $image->getClientOriginalName());
+                        // Success logic here
+                    } catch (FileException $e) {
+                        // Handle exception if something happens during file upload
+                    }
+                    $services->setImg($image->getClientOriginalName());
+                }
+                    
+                    
+                $em->flush();
 
-            return new RedirectResponse(
-                $this->router->generate('app_home')
-            );
+                return new RedirectResponse(
+                    $this->router->generate('app_home')
+                );
+            }
+            else{
+                return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+            }
         }
+        
 
     }
 
@@ -142,14 +149,19 @@ class ModifServicesControler extends AbstractController
     public function delete(Request $request, EntityManagerInterface $em)
     {
         $nameToDelete = $request->request->get("nameToDelete");
-        $services = $this->ServicesRepository->findBy(['name'=>$nameToDelete]);
-        foreach ($services as $habitat) {
-            $em->remove($habitat);
-        }
-        $em->flush();
+        $services = $this->ServicesRepository->findOneBy(['name'=>$nameToDelete]);
+        if($services != null)
+        {
+            $em->remove($services);
 
-        return new RedirectResponse(
-            $this->router->generate('app_home')
-        );
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->router->generate('app_home')
+            );
+        }
+        else{
+            return $this->render("bundles/TwigBundle/Exception/NotFoundName.html.twig");
+        }
     }
 }

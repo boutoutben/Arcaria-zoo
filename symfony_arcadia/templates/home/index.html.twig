@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}accuil{% endblock %}
-{% block style %} url('img/homeBackground.jpg'){% endblock style %}
+{% block style %}img/homeBackground.jpg{% endblock style %}
 {% block content %}
     <section>
         <div class="presentation">
-            <h2 class="text-center">présentation du zoo</h2>
+            <h2 class="sub-title text-center">présentation du zoo</h2>
             <div class="description_img">
                 <p class="description">description<p>
                 <img src="img/imgPrésentation.jpg" width="450px" height="400" class="img_presentation"> 
@@ -14,25 +14,41 @@
 
         <div class="ele-zoo">
             <div class="grid-items habitats">
-                <h3 class="living_title">Habitats</h3>
+                <h3 class="sub-title">Habitats</h3>
             </div>
             <div class="grid-items animaux">
-                <h3 class="animal_title">Animaux</h3>
+                <h3 class="sub-title">Animaux</h3>
             </div>
             <div class="grid-items services">
-                <h3 class="service_title">Services</h3>
+                <h3 class="sub-title">Services</h3>
             </div>
         </div> 
+        <div class="scheduleDiv grid-items">
+            <div class="button-title ">
+                <h3 class='avisTitle sub-title'>Horaires zoo</h3>
+                {% if is_granted("ROLE_ADMINISTRATION") %}
+                    <button class="btn-horraire" onClick="window.location.href = '/modif-schedulle';">Modifier</button>
+                {% endif %}
+            </div>
+            <table class="scheduleRow">
+                {% for schedule in schedule %}
+                    <tr>
+                        <th class="scheduleFont">{{schedule.days}}: </th>
+                        <td class="scheduleFont">De {{schedule.am}} et de {{schedule.pm}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
         <div class="avisZoo">
             <div class="button-title">
                 <h3 class='avisTitle'>Les avis du parc</h3>
                 <button class="btn-avis" onClick="window.location.href = '/avis/index';">Mettre un avis </button>
             </div>
             {% for avis in avis %}
-            <div class="avis">
-                <p class="pseudo"><b>{{avis.pseudo}}:</b></p>
-                <p class="avis-text">{{avis.text}}</p>
-            </div>
+                <div class="avis">
+                    <p class="pseudo"><b>{{avis.pseudo}}:</b></p>
+                    <p class="avis-text">{{avis.avis}}</p>
+                </div>
             {% endfor %}
         </div>
 

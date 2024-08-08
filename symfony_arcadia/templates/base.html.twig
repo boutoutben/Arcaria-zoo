@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,12 +29,11 @@
                 z-index : -1;
                 position : absolute;
                 top : 0; left : 0; right : 0; bottom : 0;
-                background-image: {% block style %}{% endblock style %};
+                background-image: url('{% block style %}{% endblock style %}');
                 background-repeat: no-repeat;
                 background-size:cover;
                 height:auto;
                 opacity: 0.7;
-                padding-bottom: 100px;
             }
             
         </style>
@@ -49,44 +51,23 @@
                     {% else %}
                         <div class="link-navbar" onClick = "window.location.href = '/login';">connection</div>
                     {% endif %}
-...                 {% if not(is_granted("ROLE_VETERINAIRE"))and not(is_granted("ROLE_EMPLOYER"))%} 
-                        <div class="link-navbar" onClick = "window.location.href = `/message_zoo`;">contact</div>
-                    {% endif %}
                     {% if is_granted("ROLE_ADMINISTRATION") %}
                         <div class="link-navbar" onClick="window.location.href = '/administration';">espace administration</div>
-                    {% endif %}
-                    {% if (is_granted("ROLE_EMPLOYER" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
+                    {% elseif (is_granted("ROLE_EMPLOYER" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
                          <div class="link-navbar" onClick = "window.location.href = `/employee`;">espace employée</div>
-                    {% endif %}
-                    {% if (is_granted("ROLE_VETERINAIRE" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
+                    {% elseif (is_granted("ROLE_VETERINAIRE" ))and not(is_granted("ROLE_ADMINISTRATION")) %}
                          <div class="link-navbar" onClick = "window.location.href = `/veterinaire`;">espace vétérinaire</div>
+                    {% else %}
+                        <div class="link-navbar" onClick = "window.location.href = `/message_zoo`;">contact</div>
                     {% endif %}
                 </div>
             </div>
         {% endblock body %}
         {% block content %}{% endblock content %}
         {% block footer %}
-            <div class="footer">
-                <div class="footer_firstLine">
-                    <div class="schedule">
-                        <h2 class="text-center sub-title">Horaires du zoo</h2>
-                        <table class="scheduleLayout">
-                            <tr>
-                                <th>Du lundi au vendredi: </th>
-                                <td>De 9h à 13h30 et de 14h30 à 18h30</td>
-                            </tr>
-                            <tr>
-                                <th>Le samedi: </th>
-                                <td>De 10 à 13h30 et de 15h00 à 20h00</td>
-                            </tr>
-                            <tr>
-                                <th>le Dimanche: </th>
-                                <td> De 10h à 13h30 et de 15h à 18h30</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="map">
-                    </div>
+            <div class="footer" height="auto">
+                <div>
+                    <img src='../../img/zooPlace.jpg' class="map">
                 </div>
                 <div class="copyrightDiv">
                     <p class="copyright">arcadia zoo © 2024</p>

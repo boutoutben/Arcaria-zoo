@@ -5,9 +5,9 @@
 {% block content %}
     <section>
         <div class='titleContact'>
-            <h1>Contact</h1>
+            <h1 class="bigTitleBackground">Contact</h1>
         </div>
-        <div class='text-center'>
+        <div class='text-center sub-title'>
             <h1>Entré en contact avec le zoo</h1>
             <br>
         </div>
@@ -19,19 +19,20 @@
                 <table>
                     <tr>
                         <th>{{form_label(form.emailUser)}}</th>
-                        <td>{{form_widget(form.emailUser)}}</td>
+                        <td>{{form_widget(form.emailUser, {"full_name":"emailUser"})}}</td>
                     </tr>
                     <tr>
                         <th>{{form_label(form.titleMessage)}}</th>
-                        <td>{{form_widget(form.titleMessage)}}</td>
+                        <td>{{form_widget(form.titleMessage, {"full_name":"title"})}}</td>
                     </tr>
                     <tr>
                         <th>{{form_label(form.message)}}</th>
-                        <td>{{form_widget(form.message)}}</td>
+                        <td>{{form_widget(form.message, {"full_name":"message"})}}</td>
                     </tr>
                 </table>
+                <button type='submit' class="btn-form">Envoyer</button>
             {{form_end(form)}}
-            <button type='submit' class="btn-form">Envoyer</button>
+            
         </div>
         
     </section>

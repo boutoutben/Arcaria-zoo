@@ -16,7 +16,7 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add("employer", RadioType::class,[
-                'label'=>'employer',
+                'label'=>'employer: ',
                 'row_attr' => ['for' => "choice2"],
                 "attr"=>[
                     "value"=> "employer"
@@ -24,7 +24,7 @@ class RegisterType extends AbstractType
 
             ])
             ->add("veterinaire",RadioType::class, [
-                "label"=>"vetérinaire",
+                "label"=>"vetérinaire: ",
                 'row_attr' => ['for' => "choice2"],
                 "attr"=>[
                     "value"=> "veterinaire",
@@ -32,7 +32,7 @@ class RegisterType extends AbstractType
                 
             ])
             ->add('username', EmailType::class,[
-                "label"=>'username',
+                "label"=>'username: ',
                 "required"=>true,
                 "attr" => [
                     "class" => "form-champ"
@@ -40,7 +40,7 @@ class RegisterType extends AbstractType
                 
             ])
             ->add('password', PasswordType::class, [
-                "label" =>"password",
+                "label" =>"password: ",
                 "required"=>true,
                 "attr" => [
                     "class" => "form-champ"
